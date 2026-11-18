@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-18",
+  "plugin_id": "org.wordflowlab.adaptation-studio",
+  "package_sha256": "d6b3da653d1c5aee226824fac3ee05be4d701e3f6ce3fa8fe7f3044285d6a292",
+  "host_version": "hetu 0.11.11",
+  "platform": "darwin",
+  "architecture": "arm64",
+  "tabs": [
+    "原著覆盖",
+    "目标结构",
+    "改编映射",
+    "例外与影响",
+    "接续创作"
+  ],
+  "empty_state": true,
+  "professional_actions": true,
+  "artifact_files": [],
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "widths": [
+    1360,
+    760
+  ],
+  "reduced_transparency": true,
+  "CAS_preserves_input": true,
+  "explicit_rebase": true,
+  "close_reopen": true,
+  "dirty_buffer_restore": true,
+  "page_errors": [],
+  "limits": [
+    "原生窗口材质、系统输入法及Windows/Linux未由本测试证明"
+  ]
+}

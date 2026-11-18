@@ -1,8 +1,8 @@
 {
   "host": {
-    "version": "0.12.0",
-    "git_sha": "b2fba2e1cba4c84a0c06176cfc8d23a9f83ed058",
-    "archive_sha256": "f1249434f06e80b6671344715c1b1ad72bd75dbf9a06f4da2d642b87bfd72d67"
+    "version": "0.12.2",
+    "git_sha": "f5f18d4abf84bc1d786e083b8c916c559cec6a5c",
+    "archive_sha256": "7b6cca30d2267920f71caa2a2a7bc03a3cc3257be94f9a8da41b384c2a0c17aa"
   },
   "plugin": {
     "slug": "adaptation-studio",
@@ -12,18 +12,18 @@
   "peers": [
     {
       "slug": "reader-review",
-      "git_sha": "7902f4bc095d6f50870f45de24eed6ca31a63c0f",
-      "package_sha256": "4fbab2c2af70d99544c84607992f3f2a2eeda448d38c42e586a31430618e1eb8"
+      "git_sha": "699da77021262bdc1bb6cd5eb211dbcc3b9cab6a",
+      "package_sha256": "9b354d5494d2158da3431b67bd76ad326c617dc08c9908dc594d6b1a1fb454ab"
     },
     {
       "slug": "comic-studio",
-      "git_sha": "a08cf87e99a9fbe23ae6fe61ab11933f99b68e0d",
-      "package_sha256": "3c8fc589895276b4a15b6b13efd4341b6d6c8cfd4daf8e14a05d310b62869460"
+      "git_sha": "b876ac309e442d0bf084743b3e1d26ee4272a864",
+      "package_sha256": "2ae6f4b41126a2f81899c4684481a5a64430b3dccdb5ec634a56c0c6f4fe667e"
     },
     {
       "slug": "audio-drama",
-      "git_sha": "ba7c3d0e752ec6c609f5b5387fb254e0312ba712",
-      "package_sha256": "a95505f4bf8bd2c387d7e5ded46563731f2951ec0c026a12508d3d7eae2cbaf0"
+      "git_sha": "d1e61be0c501ea58d6406dea499a2120f5819b7d",
+      "package_sha256": "95ab0357cce70a38643070f144a3b7a1c7a7d697b3573b1c0cc67c728584fa23"
     }
   ]
 }

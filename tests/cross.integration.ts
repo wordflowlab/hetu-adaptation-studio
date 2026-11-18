@@ -64,7 +64,7 @@ test("原著、独立改编目标、试读、局部返工、漫画、有声剧�
   for(const [slug,r] of [["adaptation-studio",adaptation],["reader-review",review],["comic-studio",comicRecord],["audio-drama",audioRecord]] as const)snapshots.push({slug,ref:fixed(r,slug),package_sha256:slug==="adaptation-studio"?c.pkg.package_sha256:handles.get(slug).pkg.package_sha256});
   for(const slug of ["adaptation-studio","reader-review","comic-studio","audio-drama"]){
    const handle=slug==="adaptation-studio"?c:handles.get(slug),binding={management_ref:targetManagement,work_ref:targetWork,plugin_id:handle.pkg.manifest.id,package_sha256:handle.pkg.package_sha256};
-   const cap=await c.ok("hetu_plugins_capabilities",binding),model:any=await import(pathToFileURL(path.join(root,"hetu-"+slug,"src/domain/model.ts")).href);
+   const cap=await c.ok("hetu_plugins_capabilities",binding),model:any=await import(pathToFileURL(slug==="adaptation-studio"?path.resolve(import.meta.dirname,"../src/domain/model.ts"):path.join(root,"hetu-"+slug,"src/domain/model.ts")).href);
    const result=await c.ok("hetu_plugins_invoke",{...binding,capabilities_sha256:cap.capabilities_sha256,action:"save_project",arguments:{content:model.newProject("独立剧本工作面验收"),source_refs:[],expected_revision:0,expected_sha256:"",operation_key:"target-plugin-"+slug}});
    assert.equal(result.result.status,"succeeded",JSON.stringify(result));assert.equal(result.result.data.object.work_ref.object_id,targetWork.object_id);
   }

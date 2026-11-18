@@ -429,6 +429,12 @@
               "type": "integer",
               "minimum": 1,
               "maximum": 1000000
+            },
+            "detail": {
+              "enum": [
+                "full",
+                "summary"
+              ]
             }
           },
           "required": [
@@ -815,6 +821,12 @@
                 "type": "object"
               },
               "maxItems": 100
+            },
+            "detail": {
+              "enum": [
+                "full",
+                "summary"
+              ]
             }
           },
           "required": [
@@ -916,6 +928,12 @@
                 "ranges",
                 "status"
               ]
+            },
+            "detail": {
+              "enum": [
+                "full",
+                "summary"
+              ]
             }
           },
           "required": [
@@ -958,6 +976,12 @@
               "type": "string",
               "minLength": 1,
               "maxLength": 100
+            },
+            "detail": {
+              "enum": [
+                "full",
+                "summary"
+              ]
             }
           },
           "required": [
@@ -1103,6 +1127,12 @@
                 "work_revision",
                 "work_sha256"
               ]
+            },
+            "detail": {
+              "enum": [
+                "full",
+                "summary"
+              ]
             }
           },
           "required": [
@@ -1145,6 +1175,12 @@
               "type": "string",
               "minLength": 1,
               "maxLength": 100
+            },
+            "detail": {
+              "enum": [
+                "full",
+                "summary"
+              ]
             }
           },
           "required": [
@@ -1242,6 +1278,12 @@
                 "rationale",
                 "status"
               ]
+            },
+            "detail": {
+              "enum": [
+                "full",
+                "summary"
+              ]
             }
           },
           "required": [
@@ -1284,6 +1326,12 @@
               "type": "string",
               "minLength": 1,
               "maxLength": 100
+            },
+            "detail": {
+              "enum": [
+                "full",
+                "summary"
+              ]
             }
           },
           "required": [
@@ -1360,6 +1408,12 @@
                 "mapping_id",
                 "description"
               ]
+            },
+            "detail": {
+              "enum": [
+                "full",
+                "summary"
+              ]
             }
           },
           "required": [
@@ -1402,6 +1456,12 @@
               "type": "string",
               "minLength": 1,
               "maxLength": 100
+            },
+            "detail": {
+              "enum": [
+                "full",
+                "summary"
+              ]
             }
           },
           "required": [
@@ -1523,6 +1583,16 @@
               "type": "integer",
               "minimum": 0,
               "maximum": 99
+            },
+            "offset": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2000000
+            },
+            "max_bytes": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8192
             }
           },
           "required": [
@@ -1717,6 +1787,12 @@
               "type": "string",
               "minLength": 1,
               "maxLength": 128
+            },
+            "detail": {
+              "enum": [
+                "full",
+                "summary"
+              ]
             }
           },
           "required": [

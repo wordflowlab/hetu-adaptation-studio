@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import {test} from "node:test";
-import {readFile,writeFile,mkdir} from "node:fs/promises";
+import {readFile,writeFile,mkdir,cp} from "node:fs/promises";
 import path from "node:path";
 import {pathToFileURL} from "node:url";
 import {start} from "./support/machine.ts";
@@ -14,8 +14,9 @@ test("原著、独立改编目标、试读、局部返工、漫画、有声剧�
  const handles=new Map<string,any>();
  async function connect(slug:string):Promise<any>{
   if(slug==="adaptation-studio")return c;
-  const directory=path.join(root,"hetu-"+slug),pkg=await c.ok("hetu_plugins_inspect_package",{package_directory:path.join(directory,"dist")});
-  await c.ok("hetu_plugins_apply",{action:"install",plugin_id:pkg.manifest.id,package_directory:path.join(directory,"dist"),package_sha256:pkg.package_sha256,expected_sha256:(await c.ok("hetu_plugins_inspect")).state_sha256,authorization_note:"本轮隔离作品跨插件完整验收",operation_key:"cross-install-"+slug});
+  const directory=path.join(root,"hetu-"+slug),packageDirectory=path.join(c.directory,"cross-peer-"+slug);await cp(path.join(directory,"dist"),packageDirectory,{recursive:true});
+  const pkg=await c.ok("hetu_plugins_inspect_package",{package_directory:packageDirectory});
+  await c.ok("hetu_plugins_apply",{action:"install",plugin_id:pkg.manifest.id,package_directory:packageDirectory,package_sha256:pkg.package_sha256,expected_sha256:(await c.ok("hetu_plugins_inspect")).state_sha256,authorization_note:"本轮隔离作品跨插件完整验收",operation_key:"cross-install-"+slug});
   const binding={management_ref:c.management,work_ref:c.work,plugin_id:pkg.manifest.id,package_sha256:pkg.package_sha256},cap=await c.ok("hetu_plugins_capabilities",binding);
   const invoke=async(action:string,args:any)=>{const r=await c.ok("hetu_plugins_invoke",{...binding,capabilities_sha256:cap.capabilities_sha256,action,arguments:args});assert.equal(r.result.status,"succeeded",JSON.stringify(r));return r.result.data;};
   const mod:any=await import(pathToFileURL(path.join(directory,"tests/support/scenario.ts")).href);

@@ -21,6 +21,24 @@ jobs:
           ref: b2fba2e1cba4c84a0c06176cfc8d23a9f83ed058
           path: host
           persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: wordflowlab/hetu-reader-review
+          ref: 7902f4bc095d6f50870f45de24eed6ca31a63c0f
+          path: hetu-reader-review
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: wordflowlab/hetu-comic-studio
+          ref: a08cf87e99a9fbe23ae6fe61ab11933f99b68e0d
+          path: hetu-comic-studio
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: wordflowlab/hetu-audio-drama
+          ref: ba7c3d0e752ec6c609f5b5387fb254e0312ba712
+          path: hetu-audio-drama
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '25.0.0'
@@ -38,6 +56,9 @@ jobs:
           npm run check
           npm run test:unit
           npm run package
+      - name: Verify exact peer source and packages
+        working-directory: plugin
+        run: python3 scripts/verify-peers.py
       - name: Verify signed host and exact plugin package
         working-directory: plugin
         env:
@@ -54,6 +75,7 @@ jobs:
             plugin/output/installed-acceptance/*.epub
             plugin/output/installed-acceptance/*.pdf
             plugin/output/installed-acceptance/*.png
+            plugin/output/installed-acceptance/*.wav
             plugin/output/installed-acceptance/*.log
             plugin/test-results/
           if-no-files-found: ignore

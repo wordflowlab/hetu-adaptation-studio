@@ -8,5 +8,22 @@
     "slug": "adaptation-studio",
     "version": "0.1.0",
     "package_sha256": "65eacc6d4d6ec606234aab9b0ccab5c2544e13cfcb17b6a2afb82735f8f069aa"
-  }
+  },
+  "peers": [
+    {
+      "slug": "reader-review",
+      "git_sha": "7902f4bc095d6f50870f45de24eed6ca31a63c0f",
+      "package_sha256": "4fbab2c2af70d99544c84607992f3f2a2eeda448d38c42e586a31430618e1eb8"
+    },
+    {
+      "slug": "comic-studio",
+      "git_sha": "a08cf87e99a9fbe23ae6fe61ab11933f99b68e0d",
+      "package_sha256": "3c8fc589895276b4a15b6b13efd4341b6d6c8cfd4daf8e14a05d310b62869460"
+    },
+    {
+      "slug": "audio-drama",
+      "git_sha": "ba7c3d0e752ec6c609f5b5387fb254e0312ba712",
+      "package_sha256": "a95505f4bf8bd2c387d7e5ded46563731f2951ec0c026a12508d3d7eae2cbaf0"
+    }
+  ]
 }

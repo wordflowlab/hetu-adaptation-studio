@@ -61,6 +61,13 @@ test("原著、独立改编目标、试读、局部返工、漫画、有声剧�
   const after=await c.ok("hetu_read_work",{management_ref:c.management,work_ref:c.work});assert.equal(after.sha256,before.sha256);
   stages.push("新候选和下一章接续，旧专业依据保持，原著摘要不变");
   for(const [slug,r] of [["adaptation-studio",adaptation],["reader-review",review],["comic-studio",comicRecord],["audio-drama",audioRecord]] as const)snapshots.push({slug,ref:fixed(r,slug),package_sha256:slug==="adaptation-studio"?c.pkg.package_sha256:handles.get(slug).pkg.package_sha256});
+  for(const slug of ["adaptation-studio","reader-review","comic-studio","audio-drama"]){
+   const handle=slug==="adaptation-studio"?c:handles.get(slug),binding={management_ref:targetManagement,work_ref:targetWork,plugin_id:handle.pkg.manifest.id,package_sha256:handle.pkg.package_sha256};
+   const cap=await c.ok("hetu_plugins_capabilities",binding),model:any=await import(pathToFileURL(path.join(root,"hetu-"+slug,"src/domain/model.ts")).href);
+   const result=await c.ok("hetu_plugins_invoke",{...binding,capabilities_sha256:cap.capabilities_sha256,action:"save_project",arguments:{content:model.newProject("独立剧本工作面验收"),source_refs:[],expected_revision:0,expected_sha256:"",operation_key:"target-plugin-"+slug}});
+   assert.equal(result.result.status,"succeeded",JSON.stringify(result));assert.equal(result.result.data.object.work_ref.object_id,targetWork.object_id);
+  }
+  stages.push("四插件分别在独立剧本作品保存专业工程，未借用原著的管理授权");
   const dir=process.env.HETU_RECEIPT_DIRECTORY??"docs/research";await mkdir(dir,{recursive:true});await writeFile(path.join(dir,"cross-acceptance.json"),JSON.stringify({recorded_at:new Date().toISOString(),host_version:c.coreVersion,platform:process.platform,architecture:process.arch,stages,snapshots,source_sha256:before.sha256,final_source_sha256:after.sha256,independent_target:targetWork,target_candidates:2,adopted:false,finalized:false,limits:["隔离验收样本和导入的试读意见，不是真实读者研究或文学质量评价","不包含付费模型、正文采纳或定稿"]},null,2)+"\n");t.diagnostic(c.directory);
  }finally{await c.client.close();}
 });

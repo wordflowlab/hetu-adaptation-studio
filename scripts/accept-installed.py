@@ -47,9 +47,9 @@ if os.environ.get('HETU_PUBLISHED_BUNDLE')=='1':
  assert sha(dest/name)==integrity['archive_sha256'];package_archive=dest/name
 else:package_archive=ROOT/'output'/name
 fixed=EVIDENCE/'fixed-package';unpack(package_archive,fixed,plugin['package_sha256'])
-env={**os.environ,'PATH':str(bin_dir)+os.pathsep+os.environ['PATH'],'HETU_PACKAGED_APP':str(app/'Contents/MacOS/Hetu'),'HETU_TEST_BIN':str(bin_dir),'HETU_TEST_PACKAGE':str(fixed),'HETU_SOURCE':os.environ.get('HETU_SOURCE',str(ROOT.parent/'host')),'HETU_RECEIPT_DIRECTORY':str(EVIDENCE),'HETU_TEST_HOST_COMMIT':host['git_sha']}
+env={**os.environ,'PATH':str(bin_dir)+os.pathsep+os.environ['PATH'],'HETU_PACKAGED_APP':str(app/'Contents/MacOS/Hetu'),'HETU_TEST_BIN':str(bin_dir),'HETU_TEST_PACKAGE':str(fixed),'HETU_EF_ROOT':str(ROOT.parent),'HETU_SOURCE':os.environ.get('HETU_SOURCE',str(ROOT.parent/'host')),'HETU_RECEIPT_DIRECTORY':str(EVIDENCE),'HETU_TEST_HOST_COMMIT':host['git_sha']}
 results=[]
-for test in ['machine','ui']:
- command=([str(bin_dir/'node'),'node_modules/@playwright/test/cli.js','test'] if test=='ui' else [str(bin_dir/'node'),'--experimental-strip-types','--test','tests/machine.integration.ts'])
+for test in ['machine','ui','cross']:
+ command=([str(bin_dir/'node'),'node_modules/@playwright/test/cli.js','test'] if test=='ui' else [str(bin_dir/'node'),'--experimental-strip-types','--test','tests/'+('cross.integration.ts' if test=='cross' else 'machine.integration.ts')])
  with (EVIDENCE/(test+'.log')).open('w') as log:r=subprocess.run(command,cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=1200)
  results.append({'test':test,'exit_code':r.returncode});(EVIDENCE/'results.json').write_text(json.dumps(results,indent=2)+'\n');print(slug,results[-1],flush=True);assert r.returncode==0,'保留失败，先回读原操作'

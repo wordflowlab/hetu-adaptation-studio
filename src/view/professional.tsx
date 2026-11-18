@@ -1,0 +1,8 @@
+import React from "react";
+import {names} from "./content.ts";
+export function ProfessionalView({p,tab,run,show}:any){return <>
+ {tab===0&&<div className="professional-grid">{p.units.map((u:any)=><article key={u.id}><h3>{u.title}</h3><p>{names[u.status]}</p>{u.ranges.map((r:any,k:number)=><p className="quote" key={k}>{r.quote}</p>)}</article>)}<button onClick={()=>void run(()=>show("check_adaptation"))}>检查原著覆盖</button></div>}
+ {tab===1&&<ol>{[...p.targets].sort((a,b)=>a.order-b.order).map((t:any)=><li key={t.id}><article><h3>{t.title}</h3><p>{names[t.medium]}{t.duration_ms?` · ${t.duration_ms/1000}秒`:' · 时长待定'}</p><p>{t.work_ref?'已记录固定目标引用，读取须沿目标自己的管理连接':'目标仍为规划'}</p><button onClick={()=>void run(()=>show("prepare_target",{target_id:t.id}))}>准备此段落交接</button></article></li>)}</ol>}
+ {tab===2&&<table className="reading-map"><thead><tr><th>原著</th><th>目标</th><th>处理与理由</th></tr></thead><tbody>{p.mappings.map((m:any)=><tr key={m.id}><td>{m.source_unit_ids.map((id:string)=>p.units.find((u:any)=>u.id===id)?.title).join('、')||'原创内容'}</td><td>{p.targets.find((t:any)=>t.id===m.target_id)?.title??'省略'}</td><td><strong>{names[m.treatment]} · {names[m.status]}</strong><p>{m.rationale}</p></td></tr>)}</tbody></table>}
+ {tab===3&&<><div className="professional-grid">{p.exceptions.map((e:any)=><article key={e.id}><h3>{e.title}</h3><p>{e.description}</p></article>)}</div><p>原著更新后，只预览受影响范围；旧映射和目标正文保持。</p><button onClick={()=>void run(()=>show("preview_impact",{changed_source_indices:[...new Set(p.units.flatMap((u:any)=>u.ranges.map((r:any)=>r.source_index)))]}))}>查看当前来源影响范围</button></>}
+ </>;}

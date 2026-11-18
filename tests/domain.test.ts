@@ -1,0 +1,14 @@
+import {test} from "node:test";
+import assert from "node:assert/strict";
+import {scenario,range,wav,sha,base,sourceRef,original} from "./support/scenario.ts";
+import {validate,clone,canonical} from "../src/domain/model.ts";
+import {checkAdaptation,impact,readProfessional} from "../src/domain/professional.ts";
+test("部分已读不能作为整书完整覆盖",()=>{const p=scenario();assert.equal(checkAdaptation(p).complete,false);p.units[1].status="read";assert.equal(checkAdaptation(p).complete,true);});
+test("未选走向不计选定映射",()=>{const p=scenario();p.mappings[0].status="proposed";assert.equal(checkAdaptation(p).unmapped_unit_ids.length,2);});
+test("合并需要两个不同来源",()=>{const p=scenario();p.mappings[0].source_unit_ids=["letter"];assert.throws(()=>validate(p),/合并/);p.mappings[0].source_unit_ids=["letter","letter"];assert.throws(()=>validate(p));});
+test("省略必须有来源无目标，并保留理由",()=>{const p=scenario();p.mappings[0].treatment="omit";assert.throws(()=>validate(p));p.mappings[0].target_id=null;validate(p);p.mappings[0].rationale="";assert.throws(()=>validate(p));});
+test("原创映射不得伪造原著来源",()=>{const p=scenario();p.mappings[0].treatment="add";assert.throws(()=>validate(p));p.mappings[0].source_unit_ids=[];validate(p);});
+test("孤立单元、目标、例外引用拒绝",()=>{for(const edit of [(p:any)=>p.mappings[0].source_unit_ids=["missing"],(p:any)=>p.mappings[0].target_id="missing",(p:any)=>p.exceptions[0].mapping_id="missing"]){const p=scenario();edit(p);assert.throws(()=>validate(p));}});
+test("目标固定身份与修订摘要成组",()=>{const p=scenario();p.targets[0].work_ref=sourceRef.work_ref;assert.throws(()=>validate(p));p.targets[0].work_revision=1;p.targets[0].work_sha256="a".repeat(64);validate(p);});
+test("来源更新影响固定映射但不改写",()=>{const p=scenario(),before=canonical(p);assert.deepEqual(impact(p,[0]).target_ids,["episode"]);assert.equal(canonical(p),before);assert.deepEqual(impact(p,[8]).target_ids,[]);});
+test("目标交接不会冒充另一作品正文已读",async()=>{const p=scenario();p.targets[0].work_ref=sourceRef.work_ref;const r:any=await readProfessional("prepare_target",p,[],{target_id:"episode"});assert.equal(r.target_read_status,"requires_separate_management_ref");assert.equal(r.mappings.length,1);});

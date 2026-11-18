@@ -58,6 +58,16 @@ test("正式机器入口全动作、固定成果、恢复与热插拔",{timeout:
  assert.equal((await c.invoke("get_operation",{operation_key:edit.operation_key})).sha256,r.sha256);
  r=await c.invoke("save_project",{...base(r,key()),content:{...r.object.content,basis_refs:[{owner_plugin_id:manifest.id,object_id:initial.object.object_id,revision:initial.object.revision,sha256:initial.sha256}]}});
  assert.equal((await c.invoke("get_basis",{...selection(r),basis_index:0})).basis.sha256,initial.sha256);
+ // 体积超过普通回执预算的工程，摘要回执与原键恢复不重发写入。
+ const large=clone(scenario(c.work));
+ large.units.push(...Array.from({length:80},(_,i)=>({...large.units[0],id:"bulk-"+i,title:"固定长篇原著阅读单元".repeat(18)})));
+ const largeInput={content:large,source_refs:refs,expected_revision:0,expected_sha256:"",operation_key:"large-summary",detail:"summary"};
+ const largeSaved=await c.invoke("save_project",largeInput);
+ assert.equal(largeSaved.content_omitted,true);assert.equal(largeSaved.object.content,undefined);
+ const recovered=await c.invoke("get_operation",{operation_key:"large-summary",detail:"summary"});assert.equal(recovered.sha256,largeSaved.sha256);
+ let exportOffset=0,report="",reportSHA:string|undefined;
+ do {const chunk=await c.invoke("export_project",{...largeSaved.content_read.arguments,offset:exportOffset});reportSHA??=chunk.report_sha256;assert.equal(chunk.report_sha256,reportSHA);assert.equal(sha(chunk.content),chunk.chunk_sha256);report+=chunk.content;if(chunk.next_offset===null)break;assert.ok(chunk.next_offset>exportOffset);exportOffset=chunk.next_offset;}while(exportOffset<1024*1024);
+ assert.equal(sha(report),reportSHA);assert.equal(JSON.parse(report).project.units.length,large.units.length);
  const fixed=selection(r),finalSHA=r.sha256;
  await c.invoke("build_context",{...fixed,goal:"沿固定依据继续创作",max_chars:12000});
  assert.equal((await c.invoke("create_handoff",{...fixed,goal:"准备下一阶段候选"})).basis_ref.sha256,finalSHA);

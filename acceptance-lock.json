@@ -7,7 +7,7 @@
   "plugin": {
     "slug": "adaptation-studio",
     "version": "0.1.0",
-    "package_sha256": "65eacc6d4d6ec606234aab9b0ccab5c2544e13cfcb17b6a2afb82735f8f069aa"
+    "package_sha256": "354d2fb5e325828e0b189bac79eff50be3ee312466c0a437c73f3ca907b061e1"
   },
   "peers": [
     {

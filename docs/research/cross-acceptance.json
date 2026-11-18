@@ -1,0 +1,70 @@
+{
+  "recorded_at": "2026-11-18T11:35:02.486Z",
+  "host_version": "hetu 0.12.2",
+  "platform": "darwin",
+  "architecture": "arm64",
+  "stages": [
+    "读取固定原著与改编映射，部分阅读如实保持",
+    "两个作品分别获权，拒绝单端读取目标，独立目标形成Fountain候选",
+    "固定试读反馈导入，原话与处理决定分别保存",
+    "同一剧本任务局部返工产生第二候选，旧候选保持",
+    "实际固定图像、分格与气泡组成同源漫画工程",
+    "两角色实际声音、时间线与确定性混音，听审意见固定原时间线",
+    "新候选和下一章接续，旧专业依据保持，原著摘要不变",
+    "四插件分别在独立剧本作品保存专业工程，未借用原著的管理授权"
+  ],
+  "snapshots": [
+    {
+      "slug": "adaptation-studio",
+      "ref": {
+        "owner_plugin_id": "org.wordflowlab.adaptation-studio",
+        "object_id": "ext_ef36fb3a-baf0-4c20-8ac3-98ec4bf86ff5",
+        "revision": 2,
+        "sha256": "208b541f9c3274d35cc5eb980a148656b76453cd6ef545b3fd68cf8e4433745b"
+      },
+      "package_sha256": "354d2fb5e325828e0b189bac79eff50be3ee312466c0a437c73f3ca907b061e1"
+    },
+    {
+      "slug": "reader-review",
+      "ref": {
+        "owner_plugin_id": "org.wordflowlab.reader-review",
+        "object_id": "ext_c7208265-8dd0-47ec-9435-890533c85306",
+        "revision": 3,
+        "sha256": "d2a5de3995b201bd83f33bbdb94bae572396fe7ab36c048d0e598b7f0d6dfa2c"
+      },
+      "package_sha256": "9b354d5494d2158da3431b67bd76ad326c617dc08c9908dc594d6b1a1fb454ab"
+    },
+    {
+      "slug": "comic-studio",
+      "ref": {
+        "owner_plugin_id": "org.wordflowlab.comic-studio",
+        "object_id": "ext_6572b5f8-126b-45eb-a1a3-e973029c7ffb",
+        "revision": 1,
+        "sha256": "55c6de7aec1655f294128055fd85c95a92a1291a0eafcee4678eb7647f1de4e5"
+      },
+      "package_sha256": "7e18dc9956a2678171c5692eef3c512315e0a40447d507c1bb292214fe284420"
+    },
+    {
+      "slug": "audio-drama",
+      "ref": {
+        "owner_plugin_id": "org.wordflowlab.audio-drama",
+        "object_id": "ext_1813b2aa-edd4-4a6c-8bc8-d0ad891edbee",
+        "revision": 1,
+        "sha256": "ffa3f0a65d01905babd97b0dac772b048c64c67a7e33409411aba883ebea6dfe"
+      },
+      "package_sha256": "95ab0357cce70a38643070f144a3b7a1c7a7d697b3573b1c0cc67c728584fa23"
+    }
+  ],
+  "independent_target": {
+    "workspace_id": "workspace_b9832ef8-02d3-40d1-a7da-aa8c9f6c48b7",
+    "kind": "drama",
+    "object_id": "drama_9163c60e-9209-45e8-aa96-f051e4fcdf13"
+  },
+  "target_candidates": 2,
+  "adopted": false,
+  "finalized": false,
+  "limits": [
+    "隔离验收样本和导入的试读意见，不是真实读者研究或文学质量评价",
+    "不包含付费模型、正文采纳或定稿"
+  ]
+}

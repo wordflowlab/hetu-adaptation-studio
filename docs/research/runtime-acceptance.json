@@ -1,8 +1,8 @@
 {
-  "recorded_at": "2026-11-18T08:51:02.346Z",
+  "recorded_at": "2026-11-18T11:31:52.541Z",
   "plugin_id": "org.wordflowlab.adaptation-studio",
-  "package_sha256": "a2e401df0109d18c58a9093e97c19ba754399f8310584a68c22c96e3ffe01e78",
-  "host_version": "hetu 0.11.11",
+  "package_sha256": "354d2fb5e325828e0b189bac79eff50be3ee312466c0a437c73f3ca907b061e1",
+  "host_version": "hetu 0.12.2",
   "platform": "darwin",
   "architecture": "arm64",
   "actions": [
@@ -19,10 +19,10 @@
     "get_source",
     "get_operation",
     "get_basis",
+    "export_project",
     "build_context",
     "create_handoff",
     "compare_versions",
-    "export_project",
     "remove_exception",
     "remove_mapping",
     "remove_target",

@@ -1,0 +1,48 @@
+{
+  "version": "0.1.0",
+  "plugin_id": "org.wordflowlab.adaptation-studio",
+  "package_sha256": "354d2fb5e325828e0b189bac79eff50be3ee312466c0a437c73f3ca907b061e1",
+  "host": {
+    "version": "0.12.2",
+    "git_sha": "f5f18d4abf84bc1d786e083b8c916c559cec6a5c",
+    "archive_sha256": "7b6cca30d2267920f71caa2a2a7bc03a3cc3257be94f9a8da41b384c2a0c17aa",
+    "size_bytes": 226016540,
+    "release_url": "https://github.com/limecloud/hetu/releases/tag/v0.12.2"
+  },
+  "ci": {
+    "conclusion": "success",
+    "headSha": "e461a7a2ccce849233e3d67e6728a9a5acff6d7d",
+    "status": "completed",
+    "url": "https://github.com/wordflowlab/hetu-adaptation-studio/actions/runs/44291676772"
+  },
+  "tested_source_commit": "e461a7a2ccce849233e3d67e6728a9a5acff6d7d",
+  "tests": [
+    {
+      "test": "machine",
+      "exit_code": 0
+    },
+    {
+      "test": "ui",
+      "exit_code": 0
+    },
+    {
+      "test": "cross",
+      "exit_code": 0
+    }
+  ],
+  "platforms": [
+    "macOS arm64"
+  ],
+  "docs": {
+    "files": 60,
+    "diagrams": 16,
+    "actual_rendered": true
+  },
+  "limits": [
+    "隔离示例，不是文学、美术或表演质量认可",
+    "真人反馈为导入样本，不代表真人研究",
+    "未执行付费模型、正文采纳或作者定稿",
+    "Windows/Linux专业旅程未验证"
+  ],
+  "recorded_at": "2026-11-18T11:36:55.855955+00:00"
+}

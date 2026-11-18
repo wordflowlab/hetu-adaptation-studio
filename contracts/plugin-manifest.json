@@ -9,7 +9,7 @@
   },
   "description": {
     "zh-CN": "从固定原著到剧本、漫画或有声剧，维护删、并、拆、增的理由与来源映射。",
-    "en": "Persistent creative engineering through external Agents and Hetu public SDK."
+    "en": "Track source coverage, adaptation choices, target structures and exceptions without rewriting the original."
   },
   "license": "Apache-2.0",
   "work_kinds": [

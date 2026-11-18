@@ -29,7 +29,7 @@ export async function readProfessional(action:string,p:any,_sources:any[],i:any,
  if(action==="prepare_target"){const t=p.targets.find((t:any)=>t.id===i.target_id);need(t,"目标不存在。");return {target:t,units:p.units.filter((u:any)=>p.mappings.some((m:any)=>m.target_id===t.id&&m.source_unit_ids.includes(u.id))),mappings:p.mappings.filter((m:any)=>m.target_id===t.id),exceptions:p.exceptions.filter((e:any)=>p.mappings.some((m:any)=>m.id===e.mapping_id&&m.target_id===t.id)),target_read_status:t.work_ref?"requires_separate_management_ref":"planning_only",note:"本结果未读取或修改目标正文；Agent须沿目标自己的管理引用发现能力、核验固定修订并准备候选。"};}
 }
 export function summaries(p:any){return [
- {title:"原著覆盖",lines:p.units.map((u:any)=>u.title+" · "+({read:"已读",partial:"部分已读",unread:"未读"} as any)[u.status])},
- {title:"目标结构",lines:[...p.targets].sort((a,b)=>a.order-b.order).map((t:any)=>t.title+" · "+t.medium)},
+ {title:"原著覆盖",lines:p.units.map((u:any)=>u.title+"　"+({read:"已读",partial:"部分已读",unread:"未读"} as any)[u.status])},
+ {title:"目标结构",lines:[...p.targets].sort((a,b)=>a.order-b.order).map((t:any)=>t.title+"　"+t.medium)},
  {title:"改编映射",lines:p.mappings.map((m:any)=>m.source_unit_ids.map((id:string)=>p.units.find((u:any)=>u.id===id)?.title).join("、")+" → "+(p.targets.find((t:any)=>t.id===m.target_id)?.title??"省略")+"："+m.rationale)},
  {title:"改编例外",lines:p.exceptions.map((e:any)=>e.title+"："+e.description)}];}

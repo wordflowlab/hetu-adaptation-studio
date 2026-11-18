@@ -30,7 +30,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: wordflowlab/hetu-comic-studio
-          ref: b876ac309e442d0bf084743b3e1d26ee4272a864
+          ref: 67aae15f226e5d8796954bcc231f0972276a2a49
           path: hetu-comic-studio
           persist-credentials: false
       - uses: actions/checkout@v4
